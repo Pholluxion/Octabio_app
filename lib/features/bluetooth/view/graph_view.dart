@@ -20,7 +20,7 @@ class _GraphViewState extends State<GraphView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Humedad"),
+        title: const Text("Gráficas"),
       ),
       body: Stack(children: [
         WaveWidgetBack(),
