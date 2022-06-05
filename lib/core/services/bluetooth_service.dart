@@ -1,7 +1,7 @@
-import 'package:flutter_blue/flutter_blue.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
 class BluetoothServiceClass {
-  FlutterBlue bluetoothService = FlutterBlue.instance;
+  FlutterBluePlus bluetoothService = FlutterBluePlus.instance;
 
   static final BluetoothServiceClass _singleton =
       BluetoothServiceClass._internal();

@@ -2,7 +2,8 @@ import 'dart:io';
 
 import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_blue/flutter_blue.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../../core/services/bluetooth_service.dart';
 
@@ -39,7 +40,7 @@ class _ConnetBluetoothViewState extends State<ConnetBluetoothView> {
         child: Container(
           height: double.infinity,
           width: double.infinity,
-          color: Colors.lightBlue,
+          color: Colors.blue[700],
         ),
       ),
     );
@@ -50,7 +51,7 @@ class _ConnetBluetoothViewState extends State<ConnetBluetoothView> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          SizedBox(height: _size.height * 0.2),
+          SizedBox(height: _size.height * 0.15),
           _imageOctabio(_size),
           _nameApp(),
           SizedBox(height: _size.height * 0.05),
@@ -101,12 +102,10 @@ class _ConnetBluetoothViewState extends State<ConnetBluetoothView> {
       duration: const Duration(seconds: 2),
       child: Padding(
         padding: EdgeInsets.only(
-          right: _size.width * 0.3,
-          left: _size.width * 0.3,
+          right: _size.width * 0.25,
+          left: _size.width * 0.25,
         ),
-        child: Image.asset(
-          "assets/img/logo.png",
-        ),
+        child: Lottie.asset('assets/lottie/octopus.json'),
       ),
     );
   }

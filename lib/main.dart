@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_blue/flutter_blue.dart';
-import 'package:octabio_app/core/services/bluetooth_service.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:octabio_app/features/bluetooth/view/connet_bluetooth_view.dart';
 
 import 'features/bluetooth/view/search_bluetooth_view.dart';
@@ -14,11 +13,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final blue = BluetoothServiceClass();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: StreamBuilder<BluetoothState>(
-        stream: blue.bluetoothService.state,
+        stream: FlutterBluePlus.instance.state,
         initialData: BluetoothState.unknown,
         builder: (context, snapshot) {
           final state = snapshot.data;

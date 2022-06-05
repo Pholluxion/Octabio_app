@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_blue/flutter_blue.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 
 class ScanResultTile extends StatelessWidget {
   const ScanResultTile({Key? key, required this.result, this.onTap})
@@ -82,49 +82,52 @@ class ScanResultTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ExpansionTile(
-      title: _buildTitle(context),
-      leading: const Icon(
-        Icons.bluetooth_disabled_rounded,
-        size: 40,
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: ExpansionTile(
+        title: _buildTitle(context),
+        leading: const Icon(
+          Icons.bluetooth_disabled_rounded,
+          size: 40,
+        ),
+        trailing: ElevatedButton(
+          child: const Text('Conectar'),
+          style: ElevatedButton.styleFrom(
+            primary: Colors.blue,
+            onPrimary: Colors.white,
+          ),
+          onPressed: (result.advertisementData.connectable) ? onTap : null,
+        ),
+        children: <Widget>[
+          _buildDeviceData(
+            context,
+            'Nombre local completo',
+            result.advertisementData.localName,
+          ),
+          _buildDeviceData(
+            context,
+            'Tx Power Level',
+            '${result.advertisementData.txPowerLevel ?? 'N/A'}',
+          ),
+          _buildDeviceData(
+            context,
+            'Manufacturer Data',
+            getNiceManufacturerData(result.advertisementData.manufacturerData),
+          ),
+          _buildDeviceData(
+            context,
+            'Service UUIDs',
+            (result.advertisementData.serviceUuids.isNotEmpty)
+                ? result.advertisementData.serviceUuids.join(', ').toUpperCase()
+                : 'N/A',
+          ),
+          _buildDeviceData(
+            context,
+            'Service Data',
+            getNiceServiceData(result.advertisementData.serviceData),
+          ),
+        ],
       ),
-      trailing: ElevatedButton(
-        child: const Text('Conectar'),
-        style: ElevatedButton.styleFrom(
-          primary: Colors.blue,
-          onPrimary: Colors.white,
-        ),
-        onPressed: (result.advertisementData.connectable) ? onTap : null,
-      ),
-      children: <Widget>[
-        _buildDeviceData(
-          context,
-          'Nombre local completo',
-          result.advertisementData.localName,
-        ),
-        _buildDeviceData(
-          context,
-          'Tx Power Level',
-          '${result.advertisementData.txPowerLevel ?? 'N/A'}',
-        ),
-        _buildDeviceData(
-          context,
-          'Manufacturer Data',
-          getNiceManufacturerData(result.advertisementData.manufacturerData),
-        ),
-        _buildDeviceData(
-          context,
-          'Service UUIDs',
-          (result.advertisementData.serviceUuids.isNotEmpty)
-              ? result.advertisementData.serviceUuids.join(', ').toUpperCase()
-              : 'N/A',
-        ),
-        _buildDeviceData(
-          context,
-          'Service Data',
-          getNiceServiceData(result.advertisementData.serviceData),
-        ),
-      ],
     );
   }
 }

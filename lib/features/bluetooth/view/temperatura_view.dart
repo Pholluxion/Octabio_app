@@ -1,7 +1,5 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_blue/flutter_blue.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
 import 'package:octabio_app/features/bluetooth/widgets/waves_widget.dart';
 
 import '../widgets/service_tile_widget.dart';
@@ -19,7 +17,9 @@ class _TempViewState extends State<TempView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: const Text("Temperatura"),
+      ),
       body: Stack(children: [
         WaveWidgetBack(),
         SingleChildScrollView(

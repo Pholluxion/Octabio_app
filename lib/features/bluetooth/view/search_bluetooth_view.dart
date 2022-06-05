@@ -1,7 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_blue/flutter_blue.dart';
+import 'package:flutter_blue_plus/flutter_blue_plus.dart';
+import 'package:lottie/lottie.dart';
 import 'package:octabio_app/features/bluetooth/view/device_home_view.dart';
 import 'package:octabio_app/features/bluetooth/widgets/waves_widget.dart';
 
@@ -73,12 +74,10 @@ class _FindDevicesScreenState extends State<FindDevicesScreen> {
     return Padding(
       padding: EdgeInsets.only(
         top: _size.height * 0.4,
-        right: _size.width * 0.3,
-        left: _size.width * 0.3,
+        right: _size.width * 0.2,
+        left: _size.width * 0.2,
       ),
-      child: Image.asset(
-        "assets/img/logo.png",
-      ),
+      child: Lottie.asset('assets/lottie/octopus.json'),
     );
   }
 
@@ -123,7 +122,7 @@ class _FindDevicesScreenState extends State<FindDevicesScreen> {
                       MaterialPageRoute(
                         builder: (context) {
                           result.device.connect();
-                          return DeviceScreen(device: result.device);
+                          return DeviceHomeView(device: result.device);
                         },
                       ),
                     );
@@ -172,7 +171,8 @@ class _FindDevicesScreenState extends State<FindDevicesScreen> {
                         blue.bluetoothService.turnOn();
                         Navigator.of(context).push(
                           MaterialPageRoute(
-                            builder: (context) => DeviceScreen(device: device),
+                            builder: (context) =>
+                                DeviceHomeView(device: device),
                           ),
                         );
                       },
